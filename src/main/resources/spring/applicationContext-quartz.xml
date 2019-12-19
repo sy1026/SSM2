@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--<bean id="task" class="net.wanhe.task.MyTask"/>-->
+
+    <!--配置任务细节-->
+    <!--<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        &lt;!&ndash;指向具体配置任务的类&ndash;&gt;
+        <property name="targetObject" ref="task"/>
+        &lt;!&ndash;指向任务类中的具体的任务&ndash;&gt;
+        <property name="targetMethod" value="task1"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    &lt;!&ndash;配置任务细节&ndash;&gt;
+    <bean id="stus" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        &lt;!&ndash;指向具体配置任务的类&ndash;&gt;
+        <property name="targetObject" ref="task"/>
+        &lt;!&ndash;指向任务类中的具体的任务&ndash;&gt;
+        <property name="targetMethod" value="task2"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    &lt;!&ndash;触发器&ndash;&gt;
+    <bean id="importTourGroupsSchedulerCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        &lt;!&ndash;任务细节&ndash;&gt;
+        <property name="jobDetail">
+            <ref bean="jobDetail"/>
+        </property>
+        &lt;!&ndash;cron表达式&ndash;&gt;
+        <property name="cronExpression" value="0 0 0/2 * * ?"/>
+    </bean>
+
+    <bean id="stusTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        &lt;!&ndash;任务细节&ndash;&gt;
+        <property name="jobDetail">
+            <ref bean="stus"/>
+        </property>
+        &lt;!&ndash;cron表达式&ndash;&gt;
+        <property name="cronExpression" value="0 0 0/2 * * ?"/>
+    </bean>
+
+    &lt;!&ndash;调度器&ndash;&gt;
+    &lt;!&ndash;调度工厂&ndash;&gt;
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="importTourGroupsSchedulerCronTrigger"/>
+                <ref bean="stusTrigger"/>
+            </list>
+        </property>
+    </bean>
+-->
+    <!--配置SpringTask-->
+    <context:component-scan base-package="net.wanhe.task"/>
+    <task:annotation-driven/>
+
+
+</beans>

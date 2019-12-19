@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间，和接口关联-->
+<mapper namespace="net.wanhe.mapper.StudentMapper">
+    <insert id="addStu">
+      INSERT INTO student VALUES (NULL ,#{sname},#{age},#{gender},#{address})
+    </insert>
+    <update id="updateStudent">
+        UPDATE student SET sname=#{sname},age=#{age},gender=#{gender},address=#{address} where id=#{id}
+    </update>
+    <delete id="delStu">
+        DELETE FROM student WHERE id=#{id}
+    </delete>
+    <select id="getAllStus" resultType="Student">
+        SELECT * FROM student
+    </select>
+    <select id="getStuById" resultType="net.wanhe.pojo.Student">
+        SELECT * FROM student WHERE id=#{id}
+    </select>
+    <select id="getAllStusPage" resultType="net.wanhe.pojo.Student">
+        SELECT * FROM student
+        <where>
+            <if test="gender!=null and !''.equals(gender)">
+                AND gender=#{gender}
+            </if>
+            <if test="address!=null and !''.equals(address)">
+                and address like concat('%',#{address},'%')
+            </if>
+        </where>
+
+    </select>
+
+</mapper>
